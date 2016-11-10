@@ -35,6 +35,12 @@ gem 'haml', '~> 4.0.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # RSpec for testing
+  gem 'rspec-rails', '~> 3.5'
+  # Capybara is an automation framework used for creating functional tests that simulates how users will interact with your application
+  gem 'capybara', '~> 2.10'
+  # Factory Girl allows you create objects that you need in your tests which can include default values.
+  gem 'factory_girl_rails', '~> 4.7.0'
 end
 
 group :development do
@@ -44,6 +50,15 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  # Shoulda-Matchers provides one-line matchers to RSpec used in testing Rails functionality
+  gem 'shoulda-matchers', '~> 3.1', require: false
+  # Database Cleaner is a set of strategies for cleaning your database in Ruby between test runs.
+  gem 'database_cleaner', '~> 1.5'
+  # generating random data for your test
+  gem 'faker', '~> 1.6.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
