@@ -7,4 +7,16 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    = render 'layouts/navbar'
+
+    .container
+      - flash.each do |key, value|
+        %div{class: "alert alert-#{key}"}
+          = value
+
+    = yield :top_content
+
+    .container
+      %h1= yield :header
+      = yield
+

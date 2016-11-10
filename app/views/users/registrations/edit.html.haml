@@ -1,0 +1,42 @@
+- header "Edit #{resource_name.to_s.humanize}"
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = devise_error_messages!
+
+  .form-group
+    = f.label :full_name
+    = f.text_field :full_name, class: 'form-control'
+
+  .form-group
+    = f.label :username
+    = f.text_field :username, class: 'form-control'
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      %span.label.label-info
+        - "Currently waiting confirmation for: #{resource.unconfirmed_email}"
+
+  .form-group
+    = f.label :password
+    = f.password_field :password, autocomplete: "off", class: 'form-control'
+    %span.help-block leave blank if you don't want to change it
+    - if @minimum_password_length
+      %span.help-block
+        - "#{@minimum_password_length} characters minimum"
+
+  .form-group
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+
+  .form-group
+    = f.label :current_password
+    = f.password_field :current_password, autocomplete: "off", class: 'form-control'
+    %span.help-block we need your current password to confirm your changes
+
+  = f.submit "Update", class: 'btn btn-primary'
+
+%h3 Cancel my account
+%p
+  Unhappy?
+  = button_to "Cancel my account", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete
+  
+= link_to "Back", :back, class: 'btn btn-default btn-sm'
