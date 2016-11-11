@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111104431) do
+ActiveRecord::Schema.define(version: 20161111144839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,22 @@ ActiveRecord::Schema.define(version: 20161111104431) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["isbn"], name: "index_books_on_isbn", unique: true, using: :btree
+  end
+
+  create_table "manifests", id: false, force: :cascade do |t|
+    t.integer "number_of_copies"
+    t.integer "order_id"
+    t.integer "book_id"
+    t.index ["book_id"], name: "index_manifests_on_book_id", using: :btree
+    t.index ["order_id"], name: "index_manifests_on_order_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "order_status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,4 +69,7 @@ ActiveRecord::Schema.define(version: 20161111104431) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "manifests", "books", on_delete: :cascade
+  add_foreign_key "manifests", "orders", on_delete: :cascade
+  add_foreign_key "orders", "users", on_delete: :cascade
 end

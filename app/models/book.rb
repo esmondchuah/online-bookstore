@@ -1,3 +1,4 @@
 class Book < ApplicationRecord
-  resourcify
+  has_many :manifests
+  has_many :orders, through: :manifests
 end
