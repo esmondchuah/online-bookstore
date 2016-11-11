@@ -1,0 +1,12 @@
+= simple_form_for [:admin, @article] do |f|
+  = f.input :isbn
+  = f.input :title
+  = f.input :authors
+  = f.input :publisher
+  = f.input :year
+  = f.input :inventory
+  = f.input :price
+  = f.input :format
+  = f.input :keywords
+  = f.input :subject
+  = f.button :submit

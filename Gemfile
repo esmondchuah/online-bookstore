@@ -33,6 +33,8 @@ gem 'haml', '~> 4.0.7'
 gem 'devise', '~> 4.2.0'
 # CanCan is an authorization library which restricts what resources a given user is allowed to access.
 gem 'cancancan', '~> 1.15.0'
+# Rails forms made easy
+gem 'simple_form', '~> 3.3.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
