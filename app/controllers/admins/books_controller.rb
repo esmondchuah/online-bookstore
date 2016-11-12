@@ -1,7 +1,7 @@
 class Admins::BooksController < ApplicationController
   
   def index
-    @books = Books.all
+    @books = Book.all
   end
 
   def show
@@ -19,7 +19,7 @@ class Admins::BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to [:admin, @book], notice: 'New book was successfully created.'
+      redirect_to [:admins, @book], notice: 'New book was successfully created.'
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class Admins::BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to [:admin, @book], notice: 'Book details were successfully updated.'
+      redirect_to [:admins, @book], notice: 'Book details were successfully updated.'
     else
       render 'edit'
     end
@@ -37,7 +37,7 @@ class Admins::BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to admin_books_path, notice: 'Book was successfully deleted.'
+    redirect_to admins_books_path, notice: 'Book was successfully deleted.'
   end
 
   private
