@@ -1,7 +1,7 @@
-.admins-books-panel
+.admin-books-panel
   - header "Book List"
 
-  = link_to 'New book', new_admins_book_path, class: 'btn btn-primary'
+  = link_to 'New book', new_admin_book_path, class: 'btn btn-primary'
 
   %table.table.table-hover
     %tr
@@ -21,5 +21,5 @@
         %td= book.publisher
         %td= book.year
         %td= book.inventory
-        %td= link_to 'Show', admins_book_path(book), class: 'btn btn-info'
-        %td= link_to 'Edit', edit_admins_book_path(book), class: 'btn btn-warning'
+        %td= link_to 'Show', admin_book_path(book), class: 'btn btn-info'
+        %td= link_to 'Edit', edit_admin_book_path(book), class: 'btn btn-warning'

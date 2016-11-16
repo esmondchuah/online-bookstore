@@ -1,0 +1,89 @@
+$primary-color: #4C255A;
+$accent-color: #55AAE0;
+$background-color: #E9EBEE;
+$primary-font: 'Oxygen', sans-serif;
+$header-font: 'Raleway', sans-serif;
+
+
+.row-centered {
+  text-align: center;
+  vertical-align: middle;
+  margin: 30px 0 30px 0;
+}
+
+.col-centered {
+  display: inline-block;
+  float: none;
+  text-align: left;   /* reset the text-align */
+  vertical-align: middle;
+  margin-right: -4px; /* inline-block space fix */
+}
+
+// a:link, a:visited {
+//   color: $accent-color;
+// }
+
+// a:hover, a:active {
+//   color: $primary-color;
+//   background-color: white;
+// }
+
+.hidden {
+  display: none;
+}
+
+.shadow {
+  background-color: white;
+  -moz-box-shadow:    3px 3px 2px 0 #ccc;
+  -webkit-box-shadow: 3px 3px 2px 0 #ccc;
+  box-shadow:         3px 3px 2px 0 #ccc;
+  
+  .left-aligned {
+    margin-left: 10px;
+  }
+
+  .right-aligned {
+    margin-right: 10px;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalized {
+  text-transform: capitalize;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.center-aligned {
+  text-align: center;
+}
+
+.left-aligned {
+  text-align: left;
+}
+
+.right-aligned {
+  text-align: right;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.default-padding {
+  padding: 15px;
+}
+

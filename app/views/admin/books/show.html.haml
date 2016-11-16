@@ -1,4 +1,4 @@
-.admins-books-panel
+.admin-books-panel
   - header "#{@book.title}"
   
   .row
@@ -21,7 +21,7 @@
           %td= @book.inventory
         %tr
           %td Price
-          %td= "$ #{@book.price}"
+          %td= number_to_currency(@book.price)
         %tr
           %td Format
           %td= @book.format
@@ -34,9 +34,9 @@
   
   .row
     .col-md-4
-      = link_to 'Back', admins_books_path, class: 'btn btn-default btn-block'
+      = link_to 'Back', admin_books_path, class: 'btn btn-default btn-block'
     .col-md-4
-      = link_to 'Edit', edit_admins_book_path(@book), class: 'btn btn-warning btn-block'
+      = link_to 'Edit', edit_admin_book_path(@book), class: 'btn btn-warning btn-block'
     .col-md-4
-      = link_to 'Delete', admins_book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block'
+      = link_to 'Delete', admin_book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block'
     

@@ -1,6 +1,9 @@
-- content_for :top_content do
-  .jumbotron
-    .container
-      %h1 Welcome!
-      %p Register to get started.
-      %p= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg'
+.users-books-panel
+  .row
+    - @books.each do |book|
+      .col-md-2
+        = link_to book_path(book), class: 'thumbnail' do
+          = image_tag('https://s-media-cache-ak0.pinimg.com/236x/62/01/49/6201499c8833e212a6e9ca0995e0a204.jpg')
+          .thumbnail-text
+            %p.center-aligned= book.title
+            %p.center-aligned= "by #{book.authors}"
