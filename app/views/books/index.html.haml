@@ -1,14 +1,7 @@
-%h4.column Featured Books
-.column
-  %ul.books-grid.no-bullet.row
-    - @books.each do |book|
-      %li.large-3.medium-4.small-12.column
-        .book-card.padly
-          = link_to book, class: "cover" do
-            = image_tag 'https://s-media-cache-ak0.pinimg.com/236x/62/01/49/6201499c8833e212a6e9ca0995e0a204.jpg'
-          .book-info.ell.glassy-bg.padmy.padlx
-            .title
-              %h6= book.title
-              %p= "by #{book.authors}"
-            %p.left.price.label.book-label.radius
-              = number_to_currency(book.price)
+.row.small-up-2.medium-up-3.large-up-6
+  - @books.each do |book|
+    .column
+      = link_to book_path(book) do
+        = image_tag 'https://s-media-cache-ak0.pinimg.com/236x/62/01/49/6201499c8833e212a6e9ca0995e0a204.jpg', class: "thumbnail"
+        %h6= book.title
+        %p= "by #{book.authors}"

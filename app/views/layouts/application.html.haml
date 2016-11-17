@@ -2,24 +2,18 @@
 %html{lang: "en" }
   %head
     %meta{charset: "utf-8" }
-
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0" }
 
-    %title= content_for?(:title) ? yield(:title) : "Untitled"
+    %title B&N Bookstore
 
     = stylesheet_link_tag "application"
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track": true
     = csrf_meta_tag
 
   %body
-    = render "layouts/header"
+    = render "layouts/navbar"
     = render "layouts/alerts"
-
-    .row.full-min-height#main-content
-      = yield
-
-    %footer.row
-      .large-12.columns
-        %hr
-        %p © B&N Bookstore 2016
+    
+    %br
+    = yield
 
