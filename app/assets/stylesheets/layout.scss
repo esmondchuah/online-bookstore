@@ -1,0 +1,48 @@
+// Custom layout styles
+// Default font family
+@font-face {
+  font-family: 'gotham-rounded';
+  src: url(gotham-rounded-medium.otf);
+}
+// Body background
+body {
+  background-image: url(body_bg.png);
+  background-position: center;
+  color: #fff;
+}
+// Logo
+.title-area{
+  a { padding:0 !important }
+  i {
+    font-size: 30px;
+    position: relative;
+    top: 2px;
+  }
+}
+// Topbar items
+.top-bar-section ul li { background: transparent }
+// Forms
+.form-container {
+  padding: 3% 3%;
+  .switch > div {
+    position: relative;
+    top: -5px;
+  }
+}
+
+.books-grid {
+  .book-card {
+    width:220px;
+    margin:auto;
+    .cover img {
+      height: 325px;
+      width:100%;
+    }
+    .book-info { .title { height: 4em; } }
+  }
+}
+
+.book-label {
+  // @include label( $text-size:13px, $bg: #3D3D32 );
+  color: gold;
+}

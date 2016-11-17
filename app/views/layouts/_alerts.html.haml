@@ -1,0 +1,6 @@
+- if notice.present? || alert.present?
+  .row
+    - is_alert = alert.present? ? "alert" : ""
+    %div{class: "alert-box #{is_alert}", "data-alert" => ""}
+      = notice || alert
+      %a.close{href: "#"} ×

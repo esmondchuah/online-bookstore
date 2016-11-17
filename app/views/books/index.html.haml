@@ -1,9 +1,14 @@
-.users-books-panel
-  .row
+%h4.column Featured Books
+.column
+  %ul.books-grid.no-bullet.row
     - @books.each do |book|
-      .col-md-2
-        = link_to book_path(book), class: 'thumbnail' do
-          = image_tag('https://s-media-cache-ak0.pinimg.com/236x/62/01/49/6201499c8833e212a6e9ca0995e0a204.jpg')
-          .thumbnail-text
-            %p.center-aligned= book.title
-            %p.center-aligned= "by #{book.authors}"
+      %li.large-3.medium-4.small-12.column
+        .book-card.padly
+          = link_to book, class: "cover" do
+            = image_tag 'https://s-media-cache-ak0.pinimg.com/236x/62/01/49/6201499c8833e212a6e9ca0995e0a204.jpg'
+          .book-info.ell.glassy-bg.padmy.padlx
+            .title
+              %h6= book.title
+              %p= "by #{book.authors}"
+            %p.left.price.label.book-label.radius
+              = number_to_currency(book.price)
