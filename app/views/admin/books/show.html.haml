@@ -1,42 +1,37 @@
-.admin-books-panel
-  - header "#{@book.title}"
-  
-  .row
-    .col-md-12
-      %table.table.table-striped
-        %tr
-          %td ISBN
-          %td= @book.isbn
-        %tr
-          %td Author(s)
-          %td= @book.authors
-        %tr
-          %td Publisher
-          %td= @book.publisher
-        %tr
-          %td Year of publication
-          %td= @book.year
-        %tr
-          %td Number of copies
-          %td= @book.inventory
-        %tr
-          %td Price
-          %td= number_to_currency(@book.price)
-        %tr
-          %td Format
-          %td= @book.format
-        %tr
-          %td Keywords
-          %td= @book.keywords
-        %tr
-          %td Subject
-          %td= @book.subject
-  
-  .row
-    .col-md-4
-      = link_to 'Back', admin_books_path, class: 'btn btn-default btn-block'
-    .col-md-4
-      = link_to 'Edit', edit_admin_book_path(@book), class: 'btn btn-warning btn-block'
-    .col-md-4
-      = link_to 'Delete', admin_book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block'
+.row
+  %h1= "#{@book.title}"
+  %table
+    %tr
+      %td ISBN
+      %td= @book.isbn
+    %tr
+      %td Author(s)
+      %td= @book.authors
+    %tr
+      %td Publisher
+      %td= @book.publisher
+    %tr
+      %td Year of publication
+      %td= @book.year
+    %tr
+      %td Number of copies
+      %td= @book.inventory
+    %tr
+      %td Price
+      %td= number_to_currency(@book.price)
+    %tr
+      %td Format
+      %td= @book.format
+    %tr
+      %td Keywords
+      %td= @book.keywords
+    %tr
+      %td Subject
+      %td= @book.subject
+
+.row
+  .expanded.button-group
+    = link_to 'Back', admin_books_path, class: 'secondary button'
+    = link_to 'Edit', edit_admin_book_path(@book), class: 'warning button'
+    = link_to 'Delete', admin_book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: 'alert button'
     
