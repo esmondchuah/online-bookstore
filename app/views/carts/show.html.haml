@@ -1,0 +1,20 @@
+.row
+  #mycart
+    %h1 My Cart
+    %p
+      You've selected
+      %span.cart-count
+        = " #{current_user.cart_count} book(s)!"
+    - @cart_books.each do |book|
+      .row.cart-book{"data-equalizer": ""}
+        .medium-3.columns{"data-equalizer-watch": ""}
+          = link_to book do
+            = image_tag 'https://s-media-cache-ak0.pinimg.com/236x/62/01/49/6201499c8833e212a6e9ca0995e0a204.jpg', class: "thumbnail"
+        .medium-5.columns{"data-equalizer-watch": ""}
+          %h4= book.title
+        .medium-3.column{"data-equalizer-watch": ""}
+          %h4= number_to_currency(book.price)
+        .medium-1.column{"data-equalizer-watch": ""}
+          = link_to "", data: {targetUrl: remove_from_cart_path(book)} do
+            %i.fi-x.right
+          

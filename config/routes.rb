@@ -9,5 +9,10 @@ Rails.application.routes.draw do
 
   resources :books
 
+  resource :cart, only: [:show] do
+    put 'add/:book_id', to: 'carts#add', as: :add_to
+    put 'remove/:book_id', to: 'carts#remove', as: :remove_from
+  end
+
   root 'books#index'
 end

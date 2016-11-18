@@ -25,4 +25,7 @@
       %tr
         %td.bold Price
         %td= number_to_currency(@book.price)
-    %a.button.large.expanded Add to Cart
+    - if user_signed_in?
+      = link_to "", class: "button large expanded", data: {target: @cart_action, addUrl: add_to_cart_path(@book), removeUrl: remove_from_cart_path(@book)} do
+        %i.fi-shopping-cart
+        = "#{@cart_action} Cart"

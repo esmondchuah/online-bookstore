@@ -5,6 +5,6 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @cart
+    @cart_action = @book.cart_action current_user.try :id
   end
 end

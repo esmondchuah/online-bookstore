@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
+
+  def cart_count
+    $redis.scard "cart#{id}"
+  end
 end
