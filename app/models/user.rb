@@ -19,4 +19,19 @@ class User < ApplicationRecord
   def cart_count
     $redis.scard "cart#{id}"
   end
+
+  def cart_total_price
+    total_price = 0
+    get_cart_books.each { |book| total_price += book.price }
+    total_price
+  end
+
+  def get_cart_books
+    cart_ids = $redis.smembers "cart#{id}"
+    Book.find(cart_ids)
+  end
+
+  def create_order
+    orders.create(status: 0)
+  end
 end

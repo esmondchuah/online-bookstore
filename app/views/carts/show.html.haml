@@ -17,4 +17,4 @@
         .medium-1.column{"data-equalizer-watch": ""}
           = link_to "", data: {targetUrl: remove_from_cart_path(book)} do
             %i.fi-x.right
-          
+    = link_to "Checkout", orders_path, method: :post, class: "button large expanded" unless current_user.get_cart_books.blank?
