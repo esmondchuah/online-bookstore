@@ -16,5 +16,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:index, :create]
 
+  resources :opinions, only: [:index, :create]
+
   root 'books#index'
 end

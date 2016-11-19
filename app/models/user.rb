@@ -34,4 +34,8 @@ class User < ApplicationRecord
   def create_order
     orders.create(status: 0)
   end
+
+  def create_opinion(params)
+    opinions.create(params)
+  end
 end

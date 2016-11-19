@@ -1,31 +1,53 @@
 .row
   .medium-3.columns
-    = image_tag 'https://s-media-cache-ak0.pinimg.com/236x/62/01/49/6201499c8833e212a6e9ca0995e0a204.jpg', class: "thumbnail"
+    = image_tag 'http://placehold.it/250x350', class: 'thumbnail'
   .medium-9.columns
     %h2= @book.title
     %table
-      %tr
-        %td.bold ISBN
-        %td= @book.isbn
-      %tr
-        %td.bold Author(s)
-        %td= @book.authors
-      %tr
-        %td.bold Publisher
-        %td= @book.publisher
-      %tr
-        %td.bold Year of publication
-        %td= @book.year
-      %tr
-        %td.bold Subject
-        %td= @book.subject
-      %tr
-        %td.bold Format
-        %td= @book.format
-      %tr
-        %td.bold Price
-        %td= number_to_currency(@book.price)
+      %tbody
+        %tr
+          %td.bold ISBN
+          %td= @book.isbn
+        %tr
+          %td.bold Author(s)
+          %td= @book.authors
+        %tr
+          %td.bold Publisher
+          %td= @book.publisher
+        %tr
+          %td.bold Year of publication
+          %td= @book.year
+        %tr
+          %td.bold Subject
+          %td= @book.subject
+        %tr
+          %td.bold Format
+          %td= @book.format
+        %tr
+          %td.bold Price
+          %td= number_to_currency(@book.price)
     - if user_signed_in?
       = link_to "", class: "button large expanded", data: {target: @cart_action, addUrl: add_to_cart_path(@book), removeUrl: remove_from_cart_path(@book)} do
         %i.fi-shopping-cart
         = "#{@cart_action} Cart"
+
+- unless @opinions.blank?
+  .row
+    %h4 Reviews
+    - @opinions.each do |opinion|
+      .media-object.stack-for-small
+        .media-object-section
+          = image_tag 'http://placehold.it/150x150', class: 'thumbnail'
+        .media-object-section
+          %h5= opinion.user.full_name
+          %h6= "Rating: #{opinion.score}"
+          %p= opinion.comment
+
+- if user_signed_in?
+  .row
+    %h4 My Review
+    = simple_form_for @opinion do |f|
+      = f.input :score, collection: 0..10, prompt: '(Select a score)'
+      = f.input :comment
+      = f.hidden_field :book_id, value: @book.id
+      = f.button :submit, class: 'expanded button'

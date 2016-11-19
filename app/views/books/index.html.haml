@@ -2,6 +2,6 @@
   - @books.each do |book|
     .column
       = link_to book_path(book) do
-        = image_tag 'https://s-media-cache-ak0.pinimg.com/236x/62/01/49/6201499c8833e212a6e9ca0995e0a204.jpg', class: "thumbnail"
+        = image_tag 'http://placehold.it/250x350', class: "thumbnail"
         %h6= book.title
         %p= "by #{book.authors}"

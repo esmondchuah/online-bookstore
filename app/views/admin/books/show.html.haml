@@ -1,33 +1,34 @@
 .row
   %h1= "#{@book.title}"
   %table
-    %tr
-      %td ISBN
-      %td= @book.isbn
-    %tr
-      %td Author(s)
-      %td= @book.authors
-    %tr
-      %td Publisher
-      %td= @book.publisher
-    %tr
-      %td Year of publication
-      %td= @book.year
-    %tr
-      %td Number of copies
-      %td= @book.inventory
-    %tr
-      %td Price
-      %td= number_to_currency(@book.price)
-    %tr
-      %td Format
-      %td= @book.format
-    %tr
-      %td Keywords
-      %td= @book.keywords
-    %tr
-      %td Subject
-      %td= @book.subject
+    %tbody
+      %tr
+        %td ISBN
+        %td= @book.isbn
+      %tr
+        %td Author(s)
+        %td= @book.authors
+      %tr
+        %td Publisher
+        %td= @book.publisher
+      %tr
+        %td Year of publication
+        %td= @book.year
+      %tr
+        %td Number of copies
+        %td= @book.inventory
+      %tr
+        %td Price
+        %td= number_to_currency(@book.price)
+      %tr
+        %td Format
+        %td= @book.format
+      %tr
+        %td Keywords
+        %td= @book.keywords
+      %tr
+        %td Subject
+        %td= @book.subject
 
 .row
   .expanded.button-group

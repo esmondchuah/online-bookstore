@@ -4,22 +4,24 @@
   = link_to 'New book', new_admin_book_path, class: 'button'
 
   %table.hover
-    %tr
-      %th Title
-      %th ISBN
-      %th Author(s)
-      %th Publisher
-      %th Year
-      %th Inventory
-      %th{colspan: "2"} Actions
-
-    - @books.each do |book|
+    %thead
       %tr
-        %td= book.title
-        %td= book.isbn
-        %td= book.authors
-        %td= book.publisher
-        %td= book.year
-        %td= book.inventory
-        %td.vertical-aligned= link_to 'Show', admin_book_path(book), class: 'success button'
-        %td.vertical-aligned= link_to 'Edit', edit_admin_book_path(book), class: 'warning button'
+        %th Title
+        %th ISBN
+        %th Author(s)
+        %th Publisher
+        %th Year
+        %th Inventory
+        %th{colspan: "2"} Actions
+    
+    %tbody
+      - @books.each do |book|
+        %tr
+          %td= book.title
+          %td= book.isbn
+          %td= book.authors
+          %td= book.publisher
+          %td= book.year
+          %td= book.inventory
+          %td.vertical-aligned= link_to 'Show', admin_book_path(book), class: 'success button'
+          %td.vertical-aligned= link_to 'Edit', edit_admin_book_path(book), class: 'warning button'

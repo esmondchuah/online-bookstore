@@ -1,0 +1,16 @@
+.row
+  %h1 My Review History
+  %table
+    %thead
+      %tr
+        %th Date
+        %th Book
+        %th Score
+        %th Comment
+    %tbody
+      - @opinions.each do |opinion|
+        %tr
+          %td= opinion.created_at.strftime("%b %d, %Y")
+          %td= opinion.book.title
+          %td= opinion.score
+          %td= opinion.comment
