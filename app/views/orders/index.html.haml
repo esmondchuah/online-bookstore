@@ -1,0 +1,19 @@
+.row
+  %h1 My Order History
+  %table
+    %thead
+      %tr
+        %th Date
+        %th Books Ordered
+        %th Status
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td= order.created_at.strftime("%b %d, %Y")
+          %td
+            - order.manifests.each do |manifest|
+              = manifest.book.title
+              .float-right
+                = "#{manifest.quantity} copy(s)"
+              %br
+          %td= order.status

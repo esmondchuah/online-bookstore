@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     put 'remove/:book_id', to: 'carts#remove', as: :remove_from
   end
 
-  resources :orders, only: [:create]
+  resources :orders, only: [:index, :create]
 
   root 'books#index'
 end
