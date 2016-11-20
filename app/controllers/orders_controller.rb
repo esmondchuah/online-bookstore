@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_user.orders.all
+    @map = ["Shipping soon", "Shipped", "In transit", "Out for delivery", "Delivered"]
   end
 
   def create

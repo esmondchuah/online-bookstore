@@ -37,11 +37,15 @@
     - @opinions.each do |opinion|
       .media-object.stack-for-small
         .media-object-section
-          = image_tag 'http://placehold.it/150x150', class: 'thumbnail'
+          = image_tag 'http://placehold.it/200x200', class: 'thumbnail'
         .media-object-section
           %h5= opinion.user.full_name
-          %h6= "Rating: #{opinion.score}"
+          %h6= "Score: #{opinion.score}"
           %p= opinion.comment
+          .small.button-group
+            = link_to "Very useful (#{opinion.ratings.where(usefulness: 2).count})", ratings_path(usefulness: 2, opinion_id: opinion.id), method: :post, class: "button"
+            = link_to "Useful (#{opinion.ratings.where(usefulness: 1).count})", ratings_path(usefulness: 1, opinion_id: opinion.id), method: :post, class: "button"
+            = link_to "Useless (#{opinion.ratings.where(usefulness: 0).count})", ratings_path(usefulness: 0, opinion_id: opinion.id), method: :post, class: "button"
 
 - if user_signed_in?
   .row

@@ -1,0 +1,21 @@
+.row
+  %h1 My Rating History
+  %table
+    %thead
+      %tr
+        %th Date
+        %th Book
+        %th Opinion
+        %th Usefulness
+    %tbody
+      - @ratings.each do |rating|
+        %tr
+          %td= rating.created_at.strftime("%b %d, %Y")
+          %td= rating.opinion.book.title
+          %td
+            .bold
+              = "Score: #{rating.opinion.score}"
+            = rating.opinion.comment
+            .italic
+              = "by #{rating.opinion.user.full_name}"
+          %td= @map[rating.usefulness]

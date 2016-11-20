@@ -38,4 +38,8 @@ class User < ApplicationRecord
   def create_opinion(params)
     opinions.create(params)
   end
+
+  def create_rating(usefulness, opinion_id)
+    ratings.create(usefulness: usefulness, opinion_id: opinion_id)
+  end
 end
