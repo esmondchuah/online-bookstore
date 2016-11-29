@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118182805) do
+ActiveRecord::Schema.define(version: 20161129155322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20161118182805) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["isbn"], name: "index_books_on_isbn", unique: true, using: :btree
+  end
+
+  create_table "carts", id: false, force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "user_id"
+    t.integer "book_id"
+    t.index ["book_id"], name: "index_carts_on_book_id", using: :btree
+    t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
   end
 
   create_table "manifests", id: false, force: :cascade do |t|
@@ -90,6 +98,8 @@ ActiveRecord::Schema.define(version: 20161118182805) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "carts", "books", on_delete: :cascade
+  add_foreign_key "carts", "users", on_delete: :cascade
   add_foreign_key "manifests", "books", on_delete: :cascade
   add_foreign_key "manifests", "orders", on_delete: :cascade
   add_foreign_key "opinions", "books", on_delete: :cascade

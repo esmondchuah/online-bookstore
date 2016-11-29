@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :opinions
   has_many :ratings
+  has_many :carts
 
   def email_required?
     false
