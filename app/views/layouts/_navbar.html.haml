@@ -10,10 +10,7 @@
           %li
             = link_to cart_path do
               %i.fi-shopping-cart
-              My Cart (
-              %span.cart-count
-                = "#{current_user.cart_count}"
-              )
+              = "My Cart (#{current_user.cart_count})"
           %li.has-submenu
             = current_user.full_name
             %ul.submenu.menu.vertical{"data-submenu": ""}

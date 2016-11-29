@@ -27,9 +27,10 @@
           %td.bold Price
           %td= number_to_currency(@book.price)
     - if user_signed_in?
-      = link_to "", class: "button large expanded", data: {target: @cart_action, addUrl: add_to_cart_path(@book), removeUrl: remove_from_cart_path(@book)} do
-        %i.fi-shopping-cart
-        = "#{@cart_action} Cart"
+      = form_tag add_to_cart_path, method: :put do
+        = hidden_field_tag :book_id, value: @book.id
+        = number_field_tag :quantity
+        = submit_tag "Add to Cart", class: "button large expanded"
 
 - unless @opinions.blank?
   .row
