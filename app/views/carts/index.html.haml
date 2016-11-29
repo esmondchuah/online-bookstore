@@ -1,0 +1,16 @@
+.row
+  %h1 My Cart
+  %p= "You've selected #{current_user.cart_count} book(s)!"
+  - @carts.each do |cart|
+    .row{"data-equalizer": "", "data-equalize-on": "medium"}
+      .medium-2.columns{"data-equalizer-watch": ""}
+        = link_to book_path(cart.book) do
+          = image_tag 'http://placehold.it/250x350', class: "thumbnail"
+      .medium-5.columns{"data-equalizer-watch": ""}
+        %h5= cart.book.title
+        %p= "Price: #{number_to_currency(cart.book.price)}"
+        %p= "Quantity: #{cart.quantity}"
+      .medium-1.column{"data-equalizer-watch": ""}
+        = link_to cart_path(cart), method: :delete, data: { confirm: 'Are you sure?' } do
+          %i.fi-x
+  = link_to "Checkout", orders_path, method: :post, class: "large expanded button" unless @carts.blank?

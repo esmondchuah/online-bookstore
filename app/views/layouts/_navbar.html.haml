@@ -8,7 +8,7 @@
       %ul.dropdown.menu{"data-dropdown-menu": ""}
         - if user_signed_in?
           %li
-            = link_to cart_path do
+            = link_to carts_path do
               %i.fi-shopping-cart
               = "My Cart (#{current_user.cart_count})"
           %li.has-submenu

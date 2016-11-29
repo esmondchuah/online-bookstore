@@ -17,22 +17,12 @@ class User < ApplicationRecord
     false
   end
 
-  def cart
-    "cart#{id}"
+  def create_cart(params)
+    carts.create(params)
   end
 
   def cart_count
-    $redis.hvals(cart).map(&:to_i).inject(0, :+)
-  end
-
-  def get_cart_books
-    Book.find($redis.hkeys(cart).map {|x| x[/\d+/].to_i})
-  end
-
-  def cart_total_price
-    total_price = 0
-    get_cart_books.each { |book| total_price += book.price }
-    total_price
+    carts.sum(:quantity)
   end
 
   def create_order

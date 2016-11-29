@@ -8,8 +8,8 @@ class OrdersController < ApplicationController
 
   def create
     order = current_user.create_order
-    order.populate_manifests(current_user.get_cart_books)
-    $redis.del "cart#{current_user.id}"
+    order.populate_manifests(current_user.carts)
+    current_user.carts.destroy_all
     redirect_to root_path
   end
 end

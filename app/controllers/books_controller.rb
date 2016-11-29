@@ -5,6 +5,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @cart = Cart.new
     @opinions = @book.opinions.all
     if user_signed_in?
       @opinion = Opinion.new

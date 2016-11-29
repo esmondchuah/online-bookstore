@@ -7,12 +7,9 @@ Rails.application.routes.draw do
     root 'books#index'
   end
 
-  resources :books, only: [:index, :show]
+  resources :books, only: [:index, :show, :update]
 
-  resource :cart, only: [:show] do
-    put 'add', to: 'carts#add', as: :add_to
-    put 'remove', to: 'carts#remove', as: :remove_from
-  end
+  resources :carts
 
   resources :orders, only: [:index, :create]
 

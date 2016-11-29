@@ -35,10 +35,6 @@ gem 'devise', '~> 4.2.0'
 gem 'cancancan', '~> 1.15.0'
 # Rails forms made easy
 gem 'simple_form', '~> 3.3.1'
-# Uses Ruby’s socket library to talk to Redis.
-gem 'redis', '~> 3.3.2'
-# Alternative connection driver which optimizes for speed, at the cost of portability.
-gem 'hiredis', '~> 0.6.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

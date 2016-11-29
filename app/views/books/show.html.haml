@@ -27,10 +27,13 @@
           %td.bold Price
           %td= number_to_currency(@book.price)
     - if user_signed_in?
-      = form_tag add_to_cart_path, method: :put do
-        = hidden_field_tag :book_id, value: @book.id
-        = number_field_tag :quantity
-        = submit_tag "Add to Cart", class: "button large expanded"
+      - if @book.inventory == 0
+        %h5.red This book is currently out of stock. Sorry!
+      - else
+        = simple_form_for @cart do |f|
+          = f.input :quantity, collection: 1..@book.inventory, selected: 1
+          = f.hidden_field :book_id, value: @book.id
+          = f.button :submit, 'Add to Cart', class: 'large expanded button'
 
 - unless @opinions.blank?
   .row
@@ -52,7 +55,7 @@
   .row
     %h4 My Review
     = simple_form_for @opinion do |f|
-      = f.input :score, collection: 0..10, prompt: '(Select a score)'
+      = f.input :score, collection: 0..10, prompt: 'Select your score'
       = f.input :comment
       = f.hidden_field :book_id, value: @book.id
       = f.button :submit, class: 'expanded button'
