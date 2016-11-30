@@ -4,6 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :username,           presence: true, uniqueness: true
+  validates :full_name,          presence: true
+  validates :credit_card_number, presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numerical digits" }, length: { in: 12..19 }
+  validates :address,            presence: true
+  validates :phone_number,       presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numerical digits" }
+
   has_many :orders
   has_many :opinions
   has_many :ratings
