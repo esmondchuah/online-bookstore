@@ -17,7 +17,7 @@
               %li= link_to 'Order History', orders_path
               %li= link_to 'Review History', opinions_path
               %li= link_to 'Rating History', ratings_path
-              %li= link_to 'Profile', edit_user_registration_path
+              %li= link_to 'Profile', user_path(current_user)
               %li= link_to 'Log out', destroy_user_session_path, method: :delete
         - else
           %li= link_to 'Log In', new_user_session_path

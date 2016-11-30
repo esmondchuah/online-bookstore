@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     root 'books#index'
   end
 
+  resources :users, only: [:show]
+
   resources :books, only: [:index, :show, :update]
 
   resources :carts

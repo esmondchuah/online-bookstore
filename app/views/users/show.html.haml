@@ -1,0 +1,20 @@
+.row
+  .medium-3.columns
+    = image_tag 'http://placehold.it/250x350', class: 'thumbnail'
+  .medium-9.columns
+    %h2= "Hello, #{@user.full_name}!"
+    %table
+      %tbody
+        %tr
+          %td.bold Username
+          %td= @user.username
+        %tr
+          %td.bold Credit card number
+          %td= @user.credit_card_number
+        %tr
+          %td.bold Address
+          %td= @user.address
+        %tr
+          %td.bold Phone number
+          %td= @user.phone_number
+    = link_to 'Edit Account', edit_user_registration_path, class: 'expanded warning button'

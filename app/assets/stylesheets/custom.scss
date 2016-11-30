@@ -1,1 +1,18 @@
 @import "config";
+
+.row input {
+  margin: 0;
+}
+
+input.button {
+  margin-bottom: 10px;
+}
+
+.input {
+  margin-bottom: 20px;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: red;
+}
