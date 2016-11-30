@@ -6,8 +6,12 @@ class OpinionsController < ApplicationController
   end
 
   def create
-    current_user.create_opinion(opinion_params)
-    redirect_to :back
+    if current_user.opinions.where(book_id: opinion_params[:book_id]).exists?
+      redirect_to :back, notice: "You have already given your review for this book."
+    else
+      current_user.create_opinion(opinion_params)
+      redirect_to :back
+    end
   end
 
   private
