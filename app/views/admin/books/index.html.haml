@@ -13,7 +13,7 @@
         %th Year
         %th Inventory
         %th{colspan: "2"} Actions
-    
+
     %tbody
       - @books.each do |book|
         %tr
@@ -22,6 +22,8 @@
           %td= book.authors
           %td= book.publisher
           %td= book.year
-          %td= book.inventory
+          %td
+            = form_for book, url: admin_book_path(book), method: :patch do |f|
+              = select("book", "inventory", 1..25, {selected: book.inventory}, {onchange: "this.form.submit()"})
           %td.vertical-aligned= link_to 'Show', admin_book_path(book), class: 'success button'
           %td.vertical-aligned= link_to 'Edit', edit_admin_book_path(book), class: 'warning button'

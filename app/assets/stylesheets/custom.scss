@@ -1,7 +1,12 @@
 @import "config";
 
-.row input {
-  margin: 0;
+.row {
+  input {
+    margin: 0;
+  }
+  select {
+    margin: 0;
+  }
 }
 
 input.button {

@@ -17,4 +17,10 @@
         %tr
           %td.bold Phone number
           %td= @user.phone_number
+        %tr
+          %td.bold Number of orders being processed
+          %td= @orders_count
+        %tr
+          %td.bold Number of reviews
+          %td= @opinions_count
     = link_to 'Edit Account', edit_user_registration_path, class: 'expanded warning button'

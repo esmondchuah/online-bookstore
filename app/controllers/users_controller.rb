@@ -3,5 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @orders_count = @user.orders.where.not(status: 4).count
+    @opinions_count = @user.opinions.count
   end
 end
