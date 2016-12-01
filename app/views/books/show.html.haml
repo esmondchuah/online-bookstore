@@ -36,6 +36,8 @@
           = f.button :submit, 'Add to Cart', class: 'large expanded button'
 
 - unless @opinions.blank?
+  %br
+  %br
   .row
     %h4 Reviews
     - @opinions.each do |opinion|
@@ -52,6 +54,8 @@
             = link_to "Useless (#{opinion.ratings.where(usefulness: 0).count})", ratings_path(usefulness: 0, opinion_id: opinion.id), method: :post, class: "button"
 
 - if user_signed_in?
+  %br
+  %br
   .row
     %h4 My Review
     = simple_form_for @opinion do |f|
