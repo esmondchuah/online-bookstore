@@ -39,7 +39,17 @@
   %br
   %br
   .row
-    %h4 Reviews
+    .medium-3.columns
+      %h3 Reviews
+    .medium-4.columns
+      = form_tag(book_path(@book), method: :get) do
+        .input-group
+          %span.input-group-label Top
+          = text_field_tag :num, params[:num], placeholder: "n", class: "input-group-field"
+          %span.input-group-label most useful review(s)
+          .input-group-button
+            = submit_tag "Search", class: "button"
+  .row
     - @opinions.each do |opinion|
       .media-object.stack-for-small
         .media-object-section
@@ -49,15 +59,15 @@
           %h6= "Score: #{opinion.score}"
           %p= opinion.comment
           .small.button-group
-            = link_to "Very useful (#{opinion.ratings.where(usefulness: 2).count})", ratings_path(usefulness: 2, opinion_id: opinion.id), method: :post, class: "button"
-            = link_to "Useful (#{opinion.ratings.where(usefulness: 1).count})", ratings_path(usefulness: 1, opinion_id: opinion.id), method: :post, class: "button"
-            = link_to "Useless (#{opinion.ratings.where(usefulness: 0).count})", ratings_path(usefulness: 0, opinion_id: opinion.id), method: :post, class: "button"
+            = link_to "Very useful (#{opinion.ratings.where(usefulness: 2).count})", ratings_path(usefulness: 2, opinion_id: opinion.id), method: :post, class: "success hollow button"
+            = link_to "Useful (#{opinion.ratings.where(usefulness: 1).count})", ratings_path(usefulness: 1, opinion_id: opinion.id), method: :post, class: "warning hollow button"
+            = link_to "Useless (#{opinion.ratings.where(usefulness: 0).count})", ratings_path(usefulness: 0, opinion_id: opinion.id), method: :post, class: "alert hollow button"
 
 - if user_signed_in?
   %br
   %br
   .row
-    %h4 My Review
+    %h3 My Review
     = simple_form_for @opinion do |f|
       = f.input :score, collection: 0..10, prompt: 'Select your score'
       = f.input :comment

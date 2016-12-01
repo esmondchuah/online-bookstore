@@ -10,9 +10,13 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @cart = Cart.new
-    @opinions = @book.opinions.all
+    if params[:num].present?
+      @opinions = @book.opinions.order('average_usefulness DESC NULLS LAST').limit(params[:num])
+    else
+      @opinions = @book.opinions.all
+    end
     if user_signed_in?
+      @cart = Cart.new
       @opinion = Opinion.new
     end
   end
