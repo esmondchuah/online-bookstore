@@ -3,7 +3,8 @@ class Opinion < ApplicationRecord
   belongs_to :book
   has_many :ratings
 
-  validates :score, :user, :book, presence: true
+  validates :user, :book, presence: true
+  validates :score, presence: true, inclusion: { in: (0..10).to_a, message: "%{value} is not a valid score." }
 
   before_save :check_for_existence
   after_save  :update_book_average_score

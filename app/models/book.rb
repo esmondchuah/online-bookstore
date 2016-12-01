@@ -12,8 +12,8 @@ class Book < ApplicationRecord
   validates :inventory, presence: true, numericality: { only_integer: true }
   validates :price,     presence: true, numericality: true
 
-  scope :title,     -> (title)     { where("title like ?", "%#{title}%") }
-  scope :authors,   -> (authors)   { where("authors like ?", "%#{authors}%") }
-  scope :publisher, -> (publisher) { where("publisher like ?", "%#{publisher}%") }
-  scope :subject,   -> (subject)   { where("subject like ?", "%#{subject}%") }
+  scope :title,     -> (title)     { where("lower(title) like ?", "%#{title.downcase}%") }
+  scope :authors,   -> (authors)   { where("lower(authors) like ?", "%#{authors.downcase}%") }
+  scope :publisher, -> (publisher) { where("lower(publisher) like ?", "%#{publisher.downcase}%") }
+  scope :subject,   -> (subject)   { where("lower(subject) like ?", "%#{subject.downcase}%") }
 end
