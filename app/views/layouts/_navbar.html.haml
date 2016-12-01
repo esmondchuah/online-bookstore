@@ -4,14 +4,6 @@
       %ul.menu
         %li.bold
           = link_to "B&N Bookstore", root_path
-        %li
-          = form_tag(books_path, method: :get) do
-            .input-group
-              = text_field_tag :title, params[:title], placeholder: "Search Title", class: "input-group-field"
-              .input-group-button
-                = submit_tag "Search", class: "button"
-        %li
-          %a.button.success.open-modal{"data-open": "advancedSearch"} More Filters
     .top-bar-right
       %ul.dropdown.menu{"data-dropdown-menu": ""}
         - if user_signed_in?
@@ -30,5 +22,3 @@
         - else
           %li= link_to 'Log In', new_user_session_path
           %li= link_to 'Sign Up', new_user_registration_path
-
-= render "layouts/modal"

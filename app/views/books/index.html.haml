@@ -1,3 +1,20 @@
+.row.search-sort
+  .medium-6.columns
+    %ul.menu
+      %li
+        = form_tag(books_path, method: :get) do
+          .input-group
+            = text_field_tag :title, params[:title], placeholder: "Search Title", class: "input-group-field"
+            .input-group-button
+              = submit_tag "Search", class: "button"
+      %li
+        %a.button.success.open-modal{"data-open": "advancedSearch"} More Filters
+  .medium-3.columns
+    = form_tag(books_path, method: :get) do
+      .input-group
+        %span.input-group-label Sort by
+        = select_tag :sort, options_for_select(["year", "review score"]), include_blank: true, onchange: "this.form.submit()", class: "input-group-field"
+
 .row.small-up-2.medium-up-3.large-up-6
   - @books.each do |book|
     .column
@@ -5,3 +22,5 @@
         = image_tag 'http://placehold.it/250x350', class: "thumbnail"
         %h6= book.title
         %p= "by #{book.authors}"
+
+= render "layouts/modal"
