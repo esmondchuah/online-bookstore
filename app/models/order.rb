@@ -3,6 +3,9 @@ class Order < ApplicationRecord
   has_many :manifests
   has_many :books, through: :manifests
 
+  validates :user,   presence: true
+  validates :status, presence: true, inclusion: { in: [0,1,2,3,4], message: "%{value} is not a valid status number." }
+
   def populate_manifests(carts)
     carts.each { |cart| create_manifest(cart.book_id, cart.quantity) }
   end
