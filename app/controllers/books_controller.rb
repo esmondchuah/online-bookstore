@@ -3,8 +3,8 @@ class BooksController < ApplicationController
     @books = Book.filter(params.slice(:title, :authors, :publisher, :subject))
     if params[:sort] == "year"
       @books = @books.order(year: :desc)
-    # elsif params[:sort] == "review score"
-    #   @books = @books.order(average_score: :desc)
+    elsif params[:sort] == "review score"
+      @books = @books.order('average_score DESC NULLS LAST')
     end
   end
 

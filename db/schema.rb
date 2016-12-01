@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129155322) do
+ActiveRecord::Schema.define(version: 20161201173108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.string   "isbn",       default: "", null: false
+    t.string   "isbn",          default: "", null: false
     t.string   "title"
     t.string   "authors"
     t.string   "publisher"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 20161129155322) do
     t.string   "format"
     t.string   "keywords"
     t.string   "subject"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.decimal  "average_score"
     t.index ["isbn"], name: "index_books_on_isbn", unique: true, using: :btree
   end
 
