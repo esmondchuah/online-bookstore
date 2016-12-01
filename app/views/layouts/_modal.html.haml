@@ -1,0 +1,27 @@
+.reveal#advancedSearch{"data-reveal": ""}
+  %h4 Filters
+  = form_tag(books_path, method: :get) do
+    .row
+      .small-3.columns
+        = label_tag "title", nil, class: "text-right middle"
+      .small-9.columns
+        = text_field_tag :title, params[:title]
+    .row
+      .small-3.columns
+        = label_tag "authors", "Author(s)", class: "text-right middle"
+      .small-9.columns
+        = text_field_tag :authors, params[:authors]
+    .row
+      .small-3.columns
+        = label_tag "publisher", nil, class: "text-right middle"
+      .small-9.columns
+        = text_field_tag :publisher, params[:publisher]
+    .row
+      .small-3.columns
+        = label_tag "subject", nil, class: "text-right middle"
+      .small-9.columns
+        = text_field_tag :subject, params[:subject]
+    = submit_tag "Filter", class: "expanded button"
+
+  %button.close-button{type: "button", "data-close": "", "aria-label": "Close modal"}
+    %span{"aria-hidden": "true"} &times;

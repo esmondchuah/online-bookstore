@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @books = Book.filter(params.slice(:title, :authors, :publisher, :subject))
   end
 
   def show
