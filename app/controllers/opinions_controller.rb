@@ -2,7 +2,7 @@ class OpinionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @opinions = current_user.opinions.all
+    @opinions = current_user.opinions.includes(:book)
   end
 
   def create
