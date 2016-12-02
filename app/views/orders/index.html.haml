@@ -12,7 +12,8 @@
           %td= order.created_at.strftime("%b %d, %Y")
           %td
             - order.manifests.each do |manifest|
-              = manifest.book.title
+              = link_to book_path(manifest.book) do
+                = manifest.book.title
               .float-right
                 = "#{manifest.quantity} copy(s)"
               %br

@@ -7,7 +7,8 @@
         = link_to book_path(cart.book) do
           = image_tag 'http://placehold.it/250x350', class: "thumbnail"
       .medium-6.columns{"data-equalizer-watch": ""}
-        %h4= cart.book.title
+        = link_to book_path(cart.book) do
+          %h4= cart.book.title
         %p= "Unit price: #{number_to_currency(cart.book.price)}"
         = form_for cart, url: cart_path(cart), method: :patch do |f|
           = f.label :quantity

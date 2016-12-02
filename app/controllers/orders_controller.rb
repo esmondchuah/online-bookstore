@@ -10,6 +10,6 @@ class OrdersController < ApplicationController
     order = current_user.create_order
     order.populate_manifests(current_user.carts)
     current_user.carts.destroy_all
-    redirect_to root_path
+    redirect_to root_path, notice: "Your order was successfully created."
   end
 end

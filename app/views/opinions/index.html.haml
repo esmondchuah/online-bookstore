@@ -11,6 +11,8 @@
       - @opinions.each do |opinion|
         %tr
           %td= opinion.created_at.strftime("%b %d, %Y")
-          %td= opinion.book.title
+          %td
+            = link_to book_path(opinion.book) do
+              = opinion.book.title
           %td= opinion.score
           %td= opinion.comment

@@ -11,7 +11,9 @@
       - @ratings.each do |rating|
         %tr
           %td= rating.created_at.strftime("%b %d, %Y")
-          %td= rating.opinion.book.title
+          %td
+            = link_to book_path(rating.opinion.book) do
+              = rating.opinion.book.title
           %td
             .bold
               = "Score: #{rating.opinion.score}"

@@ -8,19 +8,19 @@ class CartsController < ApplicationController
 
   def create
     current_user.create_cart(cart_params)
-    redirect_to :back
+    redirect_back fallback_location: root_url, notice: "Added to your cart successfully."
   end
 
   def update
     @cart = Cart.find(params[:id])
     @cart.update(cart_params)
-    redirect_to :back
+    redirect_back fallback_location: carts_url, notice: "Item(s) in your cart were successfully updated."
   end
 
   def destroy
     @cart = Cart.find(params[:id])
     @cart.destroy
-    redirect_to carts_path
+    redirect_to carts_path, notice: "Item(s) in your cart were successfully deleted."
   end
 
   private
