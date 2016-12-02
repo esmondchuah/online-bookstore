@@ -48,7 +48,7 @@
           %span.input-group-label most useful review(s)
           .input-group-button
             = submit_tag "Search", class: "button"
-  .row
+  .row.column
     - @opinions.each do |opinion|
       .media-object.stack-for-small
         .media-object-section
@@ -64,7 +64,7 @@
 
 - if user_signed_in?
   %hr
-  .row
+  .row.column
     %h3 My Review
     = simple_form_for @opinion do |f|
       = f.input :score, collection: 0..10, prompt: 'Select your score'

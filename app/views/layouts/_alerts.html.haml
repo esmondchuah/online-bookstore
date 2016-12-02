@@ -1,6 +1,13 @@
-- if notice.present? || alert.present?
+- if notice.present?
   .row
-    - is_alert = alert.present? ? "alert" : ""
-    %div{class: "alert-box #{is_alert}", "data-alert" => ""}
-      = notice || alert
-      %a.close{href: "#"} ×
+    .success.callout{"data-closable": ""}
+      = notice
+      %button.close-button{"aria-label": "Dismiss alert", type: "button", "data-close": ""}
+        %span{"aria-hidden": "true"} &times;
+
+- if alert.present?
+  .row
+    .alert.callout{"data-closable": ""}
+      = alert
+      %button.close-button{"aria-label": "Dismiss alert", type: "button", "data-close": ""}
+        %span{"aria-hidden": "true"} &times;

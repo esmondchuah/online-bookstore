@@ -1,4 +1,4 @@
-.row
+.row.column
   %h1 My Cart
   %p= "You've selected #{current_user.cart_count} book(s)!"
   - @carts.each do |cart|
@@ -17,6 +17,8 @@
         = link_to cart_path(cart), method: :delete, data: { confirm: 'Are you sure?' } do
           %i.fi-x
 
-  %br
-  %h4= "Amount payable: #{number_to_currency(@total_price)}"
-  = link_to "Checkout", orders_path, method: :post, class: "large expanded button" unless @carts.blank?
+  - unless @carts.blank?
+    %br
+    .secondary.callout.center-aligned
+      %h5= "Amount payable: #{number_to_currency(@total_price)}"
+    = link_to "Checkout", orders_path, method: :post, class: "large expanded button"

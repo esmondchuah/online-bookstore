@@ -7,7 +7,12 @@ class CartsController < ApplicationController
   end
 
   def create
-    current_user.create_cart(cart_params)
+    @cart = current_user.carts.where(book_id: cart_params[:book_id]).take
+    if @cart.blank?
+      current_user.create_cart(cart_params)
+    else
+      @cart.update(quantity: @cart.quantity + cart_params[:quantity].to_i)
+    end
     redirect_back fallback_location: root_url, notice: "Added to your cart successfully."
   end
 
