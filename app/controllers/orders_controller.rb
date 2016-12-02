@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = current_user.orders.includes(:manifests, :books)
+    @orders = current_user.orders.includes(:manifests, :books).page(params[:page]).per(25)
     @map = ["Shipping soon", "Shipped", "In transit", "Out for delivery", "Delivered"]
   end
 

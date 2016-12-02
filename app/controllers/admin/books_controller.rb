@@ -1,7 +1,9 @@
 class Admin::BooksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_admin_rights
 
   def index
-    @books = Book.all
+    @books = Book.page(params[:page]).per(25)
   end
 
   def show
@@ -45,7 +47,16 @@ class Admin::BooksController < ApplicationController
   end
 
   private
-    def book_params
-      params.require(:book).permit(:isbn, :title, :authors, :publisher, :year, :inventory, :price, :format, :keywords, :subject)
+
+  def book_params
+    params.require(:book).permit(:isbn, :title, :authors, :publisher, :year, :inventory, :price, :format, :keywords, :subject)
+  end
+
+  protected
+
+  def check_admin_rights
+    unless current_user.admin?
+      redirect_to root_url, alert: "You do not have admin rights."
     end
+  end
 end

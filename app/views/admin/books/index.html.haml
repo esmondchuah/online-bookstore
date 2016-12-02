@@ -2,6 +2,8 @@
   %h1 Book List
 
   = link_to 'New book', new_admin_book_path, class: 'button'
+  .float-right
+    = paginate @books
 
   %table.hover
     %thead
@@ -27,3 +29,7 @@
               = select("book", "inventory", 1..25, {selected: book.inventory}, {onchange: "this.form.submit()"})
           %td.vertical-aligned= link_to 'Show', admin_book_path(book), class: 'success button'
           %td.vertical-aligned= link_to 'Edit', edit_admin_book_path(book), class: 'warning button'
+
+.row
+  .float-right
+    = paginate @books

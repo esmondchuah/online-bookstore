@@ -21,3 +21,6 @@
             .italic
               = "by #{rating.opinion.user.full_name}"
           %td= @map[rating.usefulness]
+.row
+  .float-right
+    = paginate @ratings

@@ -25,4 +25,8 @@
         %h6= book.title
         %p= "by #{book.authors}"
 
+.row.column
+  .float-right
+    = paginate @books
+
 = render "layouts/modal"

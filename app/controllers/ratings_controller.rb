@@ -2,7 +2,7 @@ class RatingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @ratings = current_user.ratings.includes(:opinion)
+    @ratings = current_user.ratings.includes(:opinion).page(params[:page]).per(25)
     @map = ["Useless", "Useful", "Very useful"]
   end
 

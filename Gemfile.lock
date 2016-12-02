@@ -48,7 +48,6 @@ GEM
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.6)
-    cancancan (1.15.0)
     capybara (2.10.1)
       addressable
       mime-types (>= 1.16)
@@ -95,6 +94,9 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -221,7 +223,6 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  cancancan (~> 1.15.0)
   capybara (~> 2.10)
   database_cleaner (~> 1.5)
   devise (~> 4.2.0)
@@ -232,6 +233,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
+  kaminari (~> 0.17.0)
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
