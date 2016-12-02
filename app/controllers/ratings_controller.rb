@@ -3,6 +3,12 @@ class RatingsController < ApplicationController
 
   def index
     @ratings = current_user.ratings.includes(:opinion).page(params[:page]).per(25)
+    if params[:sort] == "book title"
+    elsif params[:sort] == "usefulness"
+      @ratings = @ratings.order(usefulness: :desc)
+    else
+      @ratings = @ratings.order(created_at: :desc)
+    end
     @map = ["Useless", "Useful", "Very useful"]
   end
 

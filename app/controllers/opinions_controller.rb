@@ -3,6 +3,12 @@ class OpinionsController < ApplicationController
 
   def index
     @opinions = current_user.opinions.includes(:book).page(params[:page]).per(25)
+    if params[:sort] == "book title"
+    elsif params[:sort] == "score"
+      @opinions = @opinions.order(score: :desc)
+    else
+      @opinions = @opinions.order(created_at: :desc)
+    end
   end
 
   def create

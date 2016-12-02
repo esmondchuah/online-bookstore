@@ -3,6 +3,11 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_user.orders.includes(:manifests, :books).page(params[:page]).per(25)
+    if params[:sort] == "status"
+      @orders = @orders.order(status: :desc)
+    else
+      @orders = @orders.order(created_at: :desc)
+    end
     @map = ["Shipping soon", "Shipped", "In transit", "Out for delivery", "Delivered"]
   end
 

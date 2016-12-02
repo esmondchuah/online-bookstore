@@ -1,5 +1,14 @@
-.row
+.row.column
   %h1 My Order History
+
+.row.search-sort
+  .medium-3.columns.float-right
+    = form_tag(orders_path, method: :get) do
+      .input-group
+        %span.input-group-label Sort by
+        = select_tag :sort, options_for_select(["date", "status"], params[:sort]), onchange: "this.form.submit()", class: "input-group-field"
+
+.row.column
   %table
     %thead
       %tr
