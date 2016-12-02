@@ -21,6 +21,7 @@
         = label_tag "subject", nil, class: "text-right middle"
       .small-9.columns
         = text_field_tag :subject, params[:subject]
+    = hidden_field_tag :sort, params[:sort]
     = submit_tag "Filter", class: "expanded button"
 
   %button.close-button{type: "button", "data-close": "", "aria-label": "Close modal"}
