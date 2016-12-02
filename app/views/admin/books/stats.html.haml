@@ -1,0 +1,29 @@
+.row.column
+  %h1 Most Popular
+  %ul.tabs#stats{"data-tabs": ""}
+    %li.tabs-title.is-active
+      %a{"href": "#books-panel", "aria-selected": "true"} Books
+    %li.tabs-title
+      %a{"href": "#authors-panel"} Authors
+    %li.tabs-title
+      %a{"href": "#publishers-panel"} Publishers
+  .tabs-content{"data-tabs-content": "stats"}
+    .tabs-panel.is-active#books-panel
+      %table.hover
+        %thead
+          %tr
+            %th Book Title
+            %th ISBN
+            %th Copies Sold
+        %tbody
+          - @books.each do |book|
+            %tr
+              %td
+                = link_to admin_book_path(book) do
+                  = book.title
+              %td= book.isbn
+              %td= book.orders.count
+    .tabs-panel#authors-panel
+      %h4 Authors
+    .tabs-panel#publishers-panel
+      %h4 Publishers

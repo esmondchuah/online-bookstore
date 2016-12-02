@@ -16,4 +16,5 @@ class Book < ApplicationRecord
   scope :authors,   -> (authors)   { where("lower(authors) like ?", "%#{authors.downcase}%") }
   scope :publisher, -> (publisher) { where("lower(publisher) like ?", "%#{publisher.downcase}%") }
   scope :subject,   -> (subject)   { where("lower(subject) like ?", "%#{subject.downcase}%") }
+  scope :from_this_month, lambda { where("orders.created_at > ? AND orders.created_at < ?", Time.now.beginning_of_month, Time.now.end_of_month) }
 end

@@ -40,6 +40,10 @@ class Admin::BooksController < ApplicationController
     redirect_to admin_books_path, notice: 'Book was successfully deleted.'
   end
 
+  def stats
+    @books = Book.select('books.id, books.title, books.isbn').joins(:orders).from_this_month
+  end
+
   private
     def book_params
       params.require(:book).permit(:isbn, :title, :authors, :publisher, :year, :inventory, :price, :format, :keywords, :subject)

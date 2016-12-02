@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
   namespace :admin do
-    resources :books
+    resources :books do
+      get 'stats', on: :collection
+    end
     root 'books#index'
   end
 
