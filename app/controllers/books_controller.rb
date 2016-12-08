@@ -15,6 +15,7 @@ class BooksController < ApplicationController
     else
       @opinions = @book.opinions.page(params[:page]).per(10)
     end
+    @recommended = nil
     if user_signed_in?
       @cart = Cart.new
       @opinion = Opinion.new
