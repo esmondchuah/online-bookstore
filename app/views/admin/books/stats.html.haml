@@ -9,6 +9,16 @@
       %a{"href": "#publishers-panel"} Publishers
   .tabs-content{"data-tabs-content": "stats"}
     .tabs-panel.is-active#books-panel
+      .medium-5.medium-offset-7.columns
+        = form_tag(stats_admin_books_path, method: :get) do
+          .input-group
+            %span.input-group-label Top
+            = text_field_tag   :book_num,      params[:book_num] || 10, class: "input-group-field"
+            = hidden_field_tag :author_num,    params[:author_num] || 10
+            = hidden_field_tag :publisher_num, params[:publisher_num] || 10
+            %span.input-group-label most popular book(s)
+            .input-group-button
+              = submit_tag "Search", class: "button"
       %table.hover
         %thead
           %tr
@@ -22,8 +32,46 @@
                 = link_to admin_book_path(book) do
                   = book.title
               %td= book.isbn
-              %td= book.orders.count
+              %td= book.num_of_copies
     .tabs-panel#authors-panel
-      %h4 Authors
+      .medium-5.medium-offset-7.columns
+        = form_tag(stats_admin_books_path, method: :get) do
+          .input-group
+            %span.input-group-label Top
+            = text_field_tag   :author_num,    params[:author_num] || 10, class: "input-group-field"
+            = hidden_field_tag :book_num,      params[:book_num] || 10
+            = hidden_field_tag :publisher_num, params[:publisher_num] || 10
+            %span.input-group-label most popular author(s)
+            .input-group-button
+              = submit_tag "Search", class: "button"
+      %table.hover
+        %thead
+          %tr
+            %th Authors
+            %th Copies Sold
+        %tbody
+          - @authors.each do |author|
+            %tr
+              %td= author.authors
+              %td= author.num_of_copies
     .tabs-panel#publishers-panel
-      %h4 Publishers
+      .medium-5.medium-offset-7.columns
+        = form_tag(stats_admin_books_path, method: :get) do
+          .input-group
+            %span.input-group-label Top
+            = text_field_tag   :publisher_num, params[:publisher_num] || 10, class: "input-group-field"
+            = hidden_field_tag :book_num,      params[:book_num] || 10
+            = hidden_field_tag :author_num,    params[:author_num] || 10
+            %span.input-group-label most popular publisher(s)
+            .input-group-button
+              = submit_tag "Search", class: "button"
+      %table.hover
+        %thead
+          %tr
+            %th Publishers
+            %th Copies Sold
+        %tbody
+          - @publishers.each do |publisher|
+            %tr
+              %td= publisher.publisher
+              %td= publisher.num_of_copies

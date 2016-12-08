@@ -43,7 +43,26 @@ class Admin::BooksController < ApplicationController
   end
 
   def stats
-    @books = Book.select('books.id, books.title, books.isbn').joins(:orders).from_this_month
+    @books = Book.select('books.id, books.title, books.isbn, SUM(manifests.quantity) AS num_of_copies').joins('INNER JOIN manifests ON books.id = manifests.book_id').joins('INNER JOIN orders ON orders.id = manifests.order_id').group('books.id').from_this_month.order('SUM(manifests.quantity) DESC')
+    if params[:book_num].present?
+      @books = @books.limit(params[:book_num])
+    else
+      @books = @books.limit(10)
+    end
+
+    @authors = Book.select('books.authors, SUM(manifests.quantity) AS num_of_copies').joins('INNER JOIN manifests ON books.id = manifests.book_id').joins('INNER JOIN orders ON orders.id = manifests.order_id').group('books.authors').from_this_month.order('SUM(manifests.quantity) DESC')
+    if params[:author_num].present?
+      @authors = @authors.limit(params[:author_num])
+    else
+      @authors = @authors.limit(10)
+    end
+
+    @publishers = Book.select('books.publisher, SUM(manifests.quantity) AS num_of_copies').joins('INNER JOIN manifests ON books.id = manifests.book_id').joins('INNER JOIN orders ON orders.id = manifests.order_id').group('books.publisher').from_this_month.order('SUM(manifests.quantity) DESC')
+    if params[:publisher_num].present?
+      @publishers = @publishers.limit(params[:publisher_num])
+    else
+      @publishers = @publishers.limit(10)
+    end
   end
 
   private
