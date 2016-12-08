@@ -4,6 +4,7 @@ class OpinionsController < ApplicationController
   def index
     @opinions = current_user.opinions.includes(:book).page(params[:page]).per(25)
     if params[:sort] == "book title"
+      @opinions = @opinions.joins('INNER JOIN books ON books.id = opinions.book_id').order('books.title')
     elsif params[:sort] == "score"
       @opinions = @opinions.order(score: :desc)
     else

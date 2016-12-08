@@ -1,12 +1,12 @@
 - if notice.present?
-  .row
+  .row.column
     .success.callout{"data-closable": ""}
       = notice
       %button.close-button{"aria-label": "Dismiss alert", type: "button", "data-close": ""}
         %span{"aria-hidden": "true"} &times;
 
 - if alert.present?
-  .row
+  .row.column
     .alert.callout{"data-closable": ""}
       = alert
       %button.close-button{"aria-label": "Dismiss alert", type: "button", "data-close": ""}

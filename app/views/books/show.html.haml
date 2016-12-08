@@ -61,9 +61,10 @@
             = link_to "Very useful (#{opinion.ratings.where(usefulness: 2).count})", ratings_path(usefulness: 2, opinion_id: opinion.id), method: :post, class: "success hollow button"
             = link_to "Useful (#{opinion.ratings.where(usefulness: 1).count})", ratings_path(usefulness: 1, opinion_id: opinion.id), method: :post, class: "warning hollow button"
             = link_to "Useless (#{opinion.ratings.where(usefulness: 0).count})", ratings_path(usefulness: 0, opinion_id: opinion.id), method: :post, class: "alert hollow button"
-  .row.column
-    .float-right
-      = paginate @opinions
+  - unless params[:num].present?
+    .row.column
+      .float-right
+        = paginate @opinions
 
 - if user_signed_in?
   %hr
