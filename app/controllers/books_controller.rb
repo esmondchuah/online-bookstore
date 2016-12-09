@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.filter(params.slice(:title, :authors, :publisher, :subject)).page(params[:page]).per(24)
+    @books = Book.filter(params.slice(:title, :authors, :publisher, :subject)).order(created_at: :desc).page(params[:page]).per(24)
     if params[:sort] == "year"
       @books = @books.order(year: :desc)
     elsif params[:sort] == "review score"

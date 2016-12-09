@@ -17,6 +17,24 @@
         %span.input-group-label Sort by
         = select_tag :sort, options_for_select(["year", "review score"], params[:sort]), include_blank: true, onchange: "this.form.submit()", class: "input-group-field"
 
+-# .orbit{"role": "region", "aria-label": "Favorite Space Pictures", "data-orbit": ""}
+-#   %ul.orbit-container
+-#     %button.orbit-previous{"aria-label": "previous"}
+-#       %span.show-for-sr Previous Slide
+-#       &#9664;
+-#     %button.orbit-next{"aria-label": "next"}
+-#       %span.show-for-sr Next Slide
+-#       &#9654;
+-#     %li.orbit-slide.is-active
+-#       = image_tag "http://placehold.it/2000x750"
+-#     %li.orbit-slide
+-#       = image_tag "http://placehold.it/2000x750"
+
+.row.column.text-center
+  %hr
+  %h2 Our Latest Books
+  %hr
+
 .row.small-up-2.medium-up-3.large-up-6
   - @books.each do |book|
     .column
