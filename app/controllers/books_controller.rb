@@ -11,11 +11,13 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     if params[:num].present?
-      @opinions = @book.opinions.order('average_usefulness DESC NULLS LAST').limit(params[:num])
+      @opinions = @book.opinions.includes(:ratings).order('average_usefulness DESC NULLS LAST').limit(params[:num])
     else
-      @opinions = @book.opinions.page(params[:page]).per(10)
+      @opinions = @book.opinions.includes(:ratings).page(params[:page]).per(10)
     end
-    @recommended = nil
+    if params[:recommend].present?
+      @recommended = Book.find_by_sql("SELECT books.id, books.title, books.authors FROM books INNER JOIN (manifests INNER JOIN orders ON orders.id = manifests.order_id) ON books.id = manifests.book_id WHERE orders.user_id IN (SELECT orders.user_id FROM manifests, orders WHERE orders.id = manifests.order_id AND orders.user_id <> #{current_user.id} AND manifests.book_id = #{params[:id]}) AND books.id <> #{params[:id]} GROUP BY books.id ORDER BY SUM(manifests.quantity) DESC LIMIT 6")
+    end
     if user_signed_in?
       @cart = Cart.new
       @opinion = Opinion.new

@@ -1,3 +1,15 @@
+- unless @recommended.blank?
+  .row.column
+    %h3 Books you may also be interested in ...
+  .row.small-up-2.medium-up-3.large-up-6
+    - @recommended.each do |recom|
+      .column
+        = link_to book_path(recom) do
+          = image_tag 'http://placehold.it/250x350', class: "thumbnail"
+          %h6= recom.title
+          %p= "by #{recom.authors}"
+  %hr
+
 .row
   .medium-3.columns
     = image_tag 'http://placehold.it/250x350', class: 'thumbnail'
@@ -34,18 +46,6 @@
           = f.input :quantity, collection: 1..@book.inventory, selected: 1
           = f.hidden_field :book_id, value: @book.id
           = f.button :submit, 'Add to Cart', class: 'large expanded button'
-
-- unless @recommended.blank?
-  %hr
-  .row.column
-    %h3 Books you may be interested in ...
-  .row.small-up-2.medium-up-3.large-up-6
-    - @recommended.each do |recom|
-      .column
-        = link_to book_path(recom) do
-          = image_tag 'http://placehold.it/250x350', class: "thumbnail"
-          %h6= recom.title
-          %p= "by #{recom.authors}"
 
 - unless @opinions.blank?
   %hr

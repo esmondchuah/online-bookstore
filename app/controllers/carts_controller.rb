@@ -13,7 +13,7 @@ class CartsController < ApplicationController
     else
       @cart.update(quantity: @cart.quantity + cart_params[:quantity].to_i)
     end
-    redirect_back fallback_location: root_url, notice: "Added to your cart successfully."
+    redirect_to book_path(cart_params[:book_id], recommend: true), notice: "Added to your cart successfully."
   end
 
   def update
