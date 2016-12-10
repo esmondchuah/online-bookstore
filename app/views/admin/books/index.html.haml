@@ -1,10 +1,29 @@
-.row
-  %h1 Book List
+.row.admin-panel
+  .medium-4.columns
+    %h1 Book List
+  .medium-2.columns
+    = link_to 'New book', new_admin_book_path, class: 'expanded button'
 
-  = link_to 'New book', new_admin_book_path, class: 'button'
-  .float-right
-    = paginate @books
+.row.search-sort
+  = form_tag(admin_books_path, method: :get) do
+    .medium-6.columns
+      %ul.menu
+        %li
+          = hidden_field_tag :authors,   params[:authors]
+          = hidden_field_tag :publisher, params[:publisher]
+          = hidden_field_tag :subject,   params[:subject]
+          .input-group
+            = text_field_tag :title, params[:title], placeholder: "Search Title", class: "input-group-field"
+            .input-group-button
+              = submit_tag "Search", class: "button"
+        %li
+          %a.button.success.open-modal{"data-open": "adminAdvancedSearch"} More Filters
+    .medium-3.columns
+      .input-group
+        %span.input-group-label Sort by
+        = select_tag :sort, options_for_select(["year", "inventory"], params[:sort]), include_blank: true, onchange: "this.form.submit()", class: "input-group-field"
 
+.row.column
   %table.hover
     %thead
       %tr
@@ -33,3 +52,5 @@
 .row
   .float-right
     = paginate @books
+
+= render "layouts/modal"

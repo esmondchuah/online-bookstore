@@ -3,7 +3,14 @@ class Admin::BooksController < ApplicationController
   before_action :check_admin_rights
 
   def index
-    @books = Book.page(params[:page]).per(25)
+    @books = Book.filter(params.slice(:title, :authors, :publisher, :subject)).page(params[:page]).per(25)
+    if params[:sort] == "year"
+      @books = @books.order(year: :desc)
+    elsif params[:sort] == "inventory"
+      @books = @books.order(inventory: :desc)
+    else
+      @books = @books.order(title: :asc)
+    end
   end
 
   def show
