@@ -1,8 +1,10 @@
 .row.admin-panel
   .medium-4.columns
     %h1 Book List
-  .medium-2.columns
-    = link_to 'New book', new_admin_book_path, class: 'expanded button'
+  .medium-3.columns
+    .expanded.button-group
+      = link_to 'Statistics', stats_admin_books_path, class: 'secondary button'
+      = link_to 'New book', new_admin_book_path, class: 'button'
 
 .row.search-sort
   = form_tag(admin_books_path, method: :get) do
