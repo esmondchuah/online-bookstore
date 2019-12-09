@@ -18,7 +18,7 @@ class ExampleApplication : Application() { {
 
     override fun onCreate() {
         super.onCreate()
-        val siteId = "your_site_id"
+        val siteId = "9823577ba1fca0c85ef4deecddc59e4887069e11"
         val driverId = "driver_001"
         val email = "driver001@gmail.com"
 
@@ -28,7 +28,7 @@ class ExampleApplication : Application() { {
         val shield = Shield.Builder(
                 applicationContext,
                 siteId)
-                .setSessionId(sessionId) // optional
+                .setSessionId(sessionId)
                 .isDedi(true)
                 .build()
         Shield.createInstance(shield)
@@ -110,7 +110,7 @@ Build the transaction payload with the following fields:
 
 ```
 val data = HashMap<String, Any>()
-data["site_id"]     = "your_site_id"
+data["site_id"]     = "9823577ba1fca0c85ef4deecddc59e4887069e11"
 data["session_id"]  = "session_001"
 data["driver_id"]   = "driver_001"
 data["email"]       = "driver001@gmail.com"
