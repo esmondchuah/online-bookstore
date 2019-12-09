@@ -66,7 +66,7 @@ class ExampleApplication : Application() { {
 
     override fun onCreate() {
         super.onCreate()
-        val siteId = "your_site_id"
+        val siteId = "9823577ba1fca0c85ef4deecddc59e4887069e11"
         val sessionId = "your_generated_session_id"
 
         val shield = Shield.Builder(
