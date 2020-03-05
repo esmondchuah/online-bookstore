@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # Use foundation for styling
 gem 'foundation-rails', '~> 6.2.4'
 # Use haml for markup, instead of erb
-gem 'haml', '~> 4.0.7'
+gem 'haml', '~> 5.0.0'
 # Use devise for user authentication
 gem 'devise', '~> 4.2.0'
 # CanCan is an authorization library which restricts what resources a given user is allowed to access.
