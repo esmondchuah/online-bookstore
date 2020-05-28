@@ -36,7 +36,7 @@ gem 'devise', '~> 4.2.0'
 # Rails forms made easy
 gem 'simple_form', '~> 3.3.1'
 # Scope & Engine based, clean, powerful, customizable and sophisticated paginator for modern web app frameworks and ORMs.
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
